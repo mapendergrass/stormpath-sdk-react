@@ -12,6 +12,8 @@ function makeHttpRequest(method, uri, body, headers, callback) {
       request.setRequestHeader(name, value);
     }
   }
+  
+  request.withCredentials = true;
 
   request.onreadystatechange = function () {
     // 4 = Request finished and response is ready.
