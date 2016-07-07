@@ -187,7 +187,7 @@ export default class RegistrationForm extends React.Component {
     e.preventDefault();
     e.persist();
 
-    var next = (err, data) => {
+    var next = (err, data, callback) => {
       if (err) {
         return this.setState({
           isFormProcessing: false,
@@ -221,11 +221,13 @@ export default class RegistrationForm extends React.Component {
             this._performRedirect();
           });
         } else {
-          this.setState({
+          var resultingState = {
             isFormProcessing: false,
             isAccountCreated: true,
             isAccountEnabled: false
-          });
+          };
+          this.setState(resultingState);
+          callback(null, resultingState);
         }
       });
     };
